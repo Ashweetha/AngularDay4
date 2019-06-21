@@ -1,0 +1,99 @@
+app html
+---------
+
+<div style="text-align:center">
+  <h1>  {{title}}  </h1>
+    <a [routerLink]="['/employees']">Get</a>
+</div>
+
+<div class="outlet-outlet">
+<router-outlet></router-outlet>
+
+</div>
+
+
+---------------------------
+app ts
+----------
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Welcome to Employee Details!';
+}
+
+
+
+---------------------------------
+employee html 
+-------------
+
+<div>
+  <form name="Regform">
+    <table>
+      <tr><td><td><b>Add Employee</b></tr>
+   <tr><td> FirstName:</td><td><input type="text"  id="textbox1" #name></td></tr>
+   <tr><td> Phone No:</td><td><input type="text"  id="textbox2"></td></tr>
+   <tr><td> Email:</td><td><input type="text"  id="textbox3"></td></tr>
+    <tr><td><button type="submit" id="button" (click) = "register(name.value)">submit</button></td></tr>
+  </table>
+  </form>
+</div>
+
+
+
+----------------------------------
+
+employee ts
+-----------
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-employees',
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.css']
+})
+export class EmployeesComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+  register(value)
+  {
+    alert("Employee Added Successfully");
+  }
+}
+
+
+
+---------------------------------------
+
+routing module
+--------------
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { EmployeesComponent} from './employees/employees.component';
+const routes: Routes = [
+  {
+    path:'employees',
+    component:EmployeesComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+
+----------------------------------------
